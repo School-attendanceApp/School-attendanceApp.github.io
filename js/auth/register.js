@@ -1,4 +1,5 @@
 import { supabase } from '../supabase.js';
+import { setupPasswordToggle } from './login.js'; // استيراد العدسة
 
 export function initRegister() {
     const loginForm = document.getElementById('loginForm');
@@ -8,7 +9,6 @@ export function initRegister() {
     const authTitle = document.getElementById('authTitle');
     const authSubtitle = document.getElementById('authSubtitle');
 
-    // Toggle Forms
     if (showRegisterBtn && showLoginBtn) {
         showRegisterBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -16,6 +16,7 @@ export function initRegister() {
             registerForm.style.display = 'block';
             authTitle.textContent = 'حساب جديد';
             authSubtitle.textContent = 'أدخل بياناتك لإنشاء حسابك';
+            setupPasswordToggle(); // تفعيل العدسة
         });
 
         showLoginBtn.addEventListener('click', (e) => {
@@ -24,14 +25,13 @@ export function initRegister() {
             loginForm.style.display = 'block';
             authTitle.textContent = 'مرحباً بك';
             authSubtitle.textContent = 'قم بتسجيل الدخول للمتابعة';
+            setupPasswordToggle(); // تفعيل العدسة
         });
     }
 
-    // Handle Registration
     if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
             const nameInput = document.getElementById('registerName').value.trim();
             const emailInput = document.getElementById('registerEmail').value.trim();
             const passwordInput = document.getElementById('registerPassword').value;
@@ -45,16 +45,11 @@ export function initRegister() {
                 const { data, error } = await supabase.auth.signUp({
                     email: emailInput,
                     password: passwordInput,
-                    options: {
-                        data: {
-                            full_name: nameInput
-                        }
-                    }
+                    options: { data: { full_name: nameInput } }
                 });
 
                 if (error) throw error;
-
-                alert('تم إنشاء الحساب بنجاح! جاري توجيهك...');
+                alert('تم إنشاء الحساب بنجاح! جاري تسجيل الدخول...'); 
                 window.location.replace('dashboard.html');
 
             } catch (error) {
