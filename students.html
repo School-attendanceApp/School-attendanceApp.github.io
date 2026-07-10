@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الطلاب - نظام الحضور</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
     <div class="app-layout">
@@ -25,17 +25,23 @@
 
         <main class="main-content">
             <header class="top-header">
-                <div class="header-actions">
-                    <button class="btn btn-outline" id="menuToggle">☰</button>
-                    <div class="saving-status">
-                        <span id="syncIcon">✓</span> تم الحفظ
-                    </div>
-                </div>
-                <div class="user-profile">
-                    <span class="user-name">أ. أحمد محمد</span>
-                    <div class="avatar">أ</div>
-                </div>
-            </header>
+    <div class="header-actions">
+        <button class="btn btn-outline" id="menuToggle">☰</button>
+
+        <button class="btn btn-primary" id="installAppBtn" style="display: none; background-color: var(--text-main); color: white; border: none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            تثبيت التطبيق
+        </button>
+
+        <div class="saving-status">
+            <span id="syncIcon">✓</span> تم الحفظ
+        </div>
+    </div>
+    <div class="user-profile">
+        <span class="user-name">أ. أحمد محمد</span>
+        <div class="avatar">أ</div>
+    </div>
+</header>
 
             <div class="page-container">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
@@ -70,6 +76,6 @@
             </div>
         </main>
     </div>
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="js/app.js?v=2"></script>
 </body>
 </html>
