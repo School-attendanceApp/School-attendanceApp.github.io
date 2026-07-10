@@ -85,6 +85,17 @@
     <p style="text-align: center; margin-top: var(--space-md); font-size: 0.875rem;">
         لديك حساب بالفعل؟ <a href="#" id="showLoginBtn" style="color: var(--primary); text-decoration: none; font-weight: bold;">تسجيل الدخول</a>
     </p>
+<<form id="updatePasswordForm" style="text-align: right; display: none;">
+    <div class="form-group">
+        <label class="form-label">كلمة المرور الجديدة</label>
+        <div style="position: relative;">
+            <input type="password" id="newPassword" class="form-control" required minlength="6" placeholder="أدخل كلمة المرور الجديدة" style="padding-left: 40px;">
+            <button type="button" class="toggle-password" data-target="newPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="width: 100%;">تحديث كلمة المرور</button>
 </form>
         </div>
     </div>

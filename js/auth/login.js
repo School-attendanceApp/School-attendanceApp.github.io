@@ -1,12 +1,8 @@
 import { supabase } from '../supabase.js';
 
-// دالة مشتركة لتفعيل زر إظهار/إخفاء كلمة المرور
 export function setupPasswordToggle() {
     const toggleBtns = document.querySelectorAll('.toggle-password');
-    toggleBtns.forEach(btn => {
-        // نستخدم removeEventListener لضمان عدم تكرار الحدث عند إعادة الاستدعاء
-        btn.replaceWith(btn.cloneNode(true));
-    });
+    toggleBtns.forEach(btn => btn.replaceWith(btn.cloneNode(true)));
     
     document.querySelectorAll('.toggle-password').forEach(btn => {
         btn.addEventListener('click', function(e) {
@@ -31,11 +27,58 @@ export function setupPasswordToggle() {
 export function initLogin() {
     const loginForm = document.getElementById('loginForm');
     const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
+    const updatePasswordForm = document.getElementById('updatePasswordForm');
+    const registerForm = document.getElementById('registerForm');
     
-    // تفعيل العدسة
     setupPasswordToggle();
 
-    // التعامل مع تسجيل الدخول
+    // 1. مراقبة حالة "استعادة كلمة المرور" من رابط البريد
+    supabase.auth.onAuthStateChange(async (event, session) => {
+        if (event === 'PASSWORD_RECOVERY') {
+            // إخفاء النماذج الأخرى وإظهار نموذج كلمة المرور الجديدة
+            if (loginForm) loginForm.style.display = 'none';
+            if (registerForm) registerForm.style.display = 'none';
+            if (updatePasswordForm) updatePasswordForm.style.display = 'block';
+            
+            const authTitle = document.getElementById('authTitle');
+            const authSubtitle = document.getElementById('authSubtitle');
+            if (authTitle) authTitle.textContent = 'تعيين كلمة مرور جديدة';
+            if (authSubtitle) authSubtitle.textContent = 'الرجاء إدخال كلمة المرور الجديدة لحسابك';
+            
+            setupPasswordToggle();
+        }
+    });
+
+    // 2. تحديث كلمة المرور في قاعدة البيانات
+    if (updatePasswordForm) {
+        updatePasswordForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const submitBtn = updatePasswordForm.querySelector('button[type="submit"]');
+            
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'جاري التحديث...';
+            submitBtn.disabled = true;
+
+            try {
+                // إرسال كلمة المرور الجديدة إلى Supabase
+                const { error } = await supabase.auth.updateUser({ password: newPassword });
+                if (error) throw error;
+                
+                alert('تم تحديث كلمة المرور بنجاح! سيتم توجيهك للوحة القيادة.');
+                window.location.hash = ''; // تنظيف الرابط
+                window.location.replace('dashboard.html');
+            } catch (error) {
+                console.error('Update password error:', error.message);
+                alert('حدث خطأ أثناء تحديث كلمة المرور: ' + error.message);
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
+    // 3. تسجيل الدخول العادي
     if (loginForm) {
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -50,7 +93,7 @@ export function initLogin() {
             submitBtn.disabled = true;
 
             try {
-                const { data, error } = await supabase.auth.signInWithPassword({
+                const { error } = await supabase.auth.signInWithPassword({
                     email: emailInput,
                     password: passwordInput,
                 });
@@ -66,7 +109,7 @@ export function initLogin() {
         });
     }
 
-    // التعامل مع نسيت كلمة المرور
+    // 4. طلب رابط استعادة كلمة المرور
     if (forgotPasswordBtn) {
         forgotPasswordBtn.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -86,7 +129,7 @@ export function initLogin() {
                 alert('تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني بنجاح. يرجى مراجعة صندوق الوارد.');
             } catch (error) {
                 console.error('Reset error:', error.message);
-                alert('حدث خطأ أثناء إرسال الرابط. تأكد من صحة البريد الإلكتروني.');
+                alert('عذراً، فشل الإرسال. قد تكون وصلت للحد الأقصى للإرسال (Rate Limit)، يرجى المحاولة بعد ساعة.');
             }
         });
     }
