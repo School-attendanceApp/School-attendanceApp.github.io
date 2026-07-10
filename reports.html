@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقارير - نظام الحضور</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header"><a href="dashboard.html" class="sidebar-brand">نظام الحضور</a></div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">الرئيسية</a>
+                <a href="class.html" class="nav-item">الفصول</a>
+                <a href="students.html" class="nav-item">الطلاب</a>
+                <a href="attendance.html" class="nav-item">سجل الحضور</a>
+                <a href="reports.html" class="nav-item active">التقارير</a>
+                <a href="settings.html" class="nav-item">الإعدادات</a>
+                <a href="#" class="nav-item" style="color: var(--danger); margin-top: auto;">تسجيل الخروج</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="menuToggle">☰</button>
+                    <div class="saving-status"><span id="syncIcon">✓</span> تم الحفظ</div>
+                </div>
+                <div class="user-profile"><span class="user-name">أ. أحمد محمد</span><div class="avatar">أ</div></div>
+            </header>
+
+            <div class="page-container">
+                <h1 class="page-title">التقارير والتصدير</h1>
+                <div class="card">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">تحديد الفصل</label>
+                            <select class="form-control">
+                                <option>اختر الفصل...</option>
+                                <option>فصل 1/أ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">تحديد الشهر</label>
+                            <select class="form-control">
+                                <option>أكتوبر 2023</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md);">
+                        <button class="btn btn-primary">تصدير PDF (طباعة رسمية)</button>
+                        <button class="btn btn-success" style="background-color: var(--success); color: white;">تصدير Excel</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

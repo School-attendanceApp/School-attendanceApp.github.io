@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعدادات الفصل - نظام الحضور</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="dashboard.html" class="sidebar-brand">نظام الحضور</a>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">الرئيسية</a>
+                <a href="class.html" class="nav-item active">الفصول</a>
+                <a href="students.html" class="nav-item">الطلاب</a>
+                <a href="attendance.html" class="nav-item">سجل الحضور</a>
+                <a href="reports.html" class="nav-item">التقارير</a>
+                <a href="settings.html" class="nav-item">الإعدادات</a>
+                <a href="#" class="nav-item" style="color: var(--danger); margin-top: auto;">تسجيل الخروج</a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="menuToggle">☰</button>
+                    <div class="saving-status"><span id="syncIcon">✓</span> تم الحفظ</div>
+                </div>
+                <div class="user-profile"><span class="user-name">أ. أحمد محمد</span><div class="avatar">أ</div></div>
+            </header>
+
+            <div class="page-container">
+                <h1 class="page-title">إعدادات الفصل</h1>
+                <div class="card">
+                    <form id="classForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">المحافظة</label>
+                                <input type="text" class="form-control" value="القاهرة">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الإدارة التعليمية</label>
+                                <input type="text" class="form-control" value="إدارة شرق">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">اسم المدرسة</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">العام الدراسي</label>
+                                <input type="text" class="form-control" value="2023/2024">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الفصل</label>
+                                <input type="text" class="form-control" placeholder="مثال: 1/أ">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">المادة</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div style="margin-top: var(--space-lg); display: flex; justify-content: flex-end;">
+                            <button type="button" class="btn btn-primary">حفظ التغييرات</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

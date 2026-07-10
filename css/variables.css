@@ -1,0 +1,32 @@
+:root {
+    /* Color Palette */
+    --primary: #2563EB;
+    --success: #16A34A;
+    --danger: #DC2626;
+    --warning: #D97706;
+    --bg-main: #F9FAFB; /* Slightly off-white for contrast against white cards */
+    --bg-card: #FFFFFF;
+    --border: #D1D5DB;
+    --text-main: #111827;
+    --text-muted: #6B7280;
+    --hover-bg: #F3F4F6;
+    
+    /* Custom Table Border */
+    --table-border-color: #000000;
+
+    /* Spacing */
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+
+    /* Border Radius & Shadows */
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    
+    /* Typography */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fallback for Arabic */
+    --transition: all 0.3s ease;
+}
