@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إعدادات الفصل - نظام الحضور</title>
+    <title>إدارة الفصول - نظام الحضور</title>
     <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
@@ -25,58 +25,53 @@
 
         <main class="main-content">
             <header class="top-header">
-    <div class="header-actions">
-        <button class="btn btn-outline" id="menuToggle">☰</button>
-
-        <button class="btn btn-primary" id="installAppBtn" style="display: none; background-color: var(--text-main); color: white; border: none;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            تثبيت التطبيق
-        </button>
-
-        <div class="saving-status">
-            <span id="syncIcon">✓</span> تم الحفظ
-        </div>
-    </div>
-    <div class="user-profile">
-        <span class="user-name">أ. أحمد محمد</span>
-        <div class="avatar">أ</div>
-    </div>
-</header>
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="menuToggle">☰</button>
+                    <button class="btn btn-primary" id="installAppBtn" style="display: none; background-color: var(--text-main); color: white; border: none;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 5px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                        تثبيت التطبيق
+                    </button>
+                    <div class="saving-status">
+                        <span id="syncIcon">✓</span> <span id="syncText">تم الحفظ</span>
+                    </div>
+                </div>
+                <div class="user-profile">
+                    <span class="user-name"></span>
+                    <div class="avatar">أ</div>
+                </div>
+            </header>
 
             <div class="page-container">
-                <h1 class="page-title">إعدادات الفصل</h1>
-                <div class="card">
-                    <form id="classForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label class="form-label">المحافظة</label>
-                                <input type="text" class="form-control" value="القاهرة">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">الإدارة التعليمية</label>
-                                <input type="text" class="form-control" value="إدارة شرق">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">اسم المدرسة</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">العام الدراسي</label>
-                                <input type="text" class="form-control" value="2023/2024">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">الفصل</label>
-                                <input type="text" class="form-control" placeholder="مثال: 1/أ">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">المادة</label>
-                                <input type="text" class="form-control">
-                            </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                    <h1 class="page-title" style="margin: 0;">إدارة الفصول</h1>
+                    <button class="btn btn-primary" id="showAddClassFormBtn">+ إضافة فصل جديد</button>
+                </div>
+
+                <div class="card" id="addClassFormContainer" style="display: none; margin-bottom: var(--space-xl); border: 2px solid var(--primary);">
+                    <h3 style="margin-top: 0; margin-bottom: var(--space-md);">بيانات الفصل الجديد</h3>
+                    <form id="addClassForm">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+                            <div class="form-group"><label class="form-label">المحافظة</label><input type="text" id="classGov" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">الإدارة التعليمية</label><input type="text" id="classAdmin" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">اسم المدرسة</label><input type="text" id="classSchool" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">العام الدراسي</label><input type="text" id="classYear" class="form-control" required placeholder="مثال: 2026/2027"></div>
+                            <div class="form-group"><label class="form-label">الفصل الدراسي</label><input type="text" id="classSemester" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">اسم الفصل</label><input type="text" id="className" class="form-control" required placeholder="مثال: 1/أ"></div>
+                            <div class="form-group"><label class="form-label">المادة</label><input type="text" id="classSubject" class="form-control" required></div>
+                            <div class="form-group"><label class="form-label">لون تمييز الفصل</label><input type="color" id="classColor" class="form-control" value="#2563EB" style="padding: 0; height: 40px;"></div>
                         </div>
-                        <div style="margin-top: var(--space-lg); display: flex; justify-content: flex-end;">
-                            <button type="button" class="btn btn-primary">حفظ التغييرات</button>
+                        <div style="display: flex; justify-content: flex-end; gap: var(--space-sm); margin-top: var(--space-md);">
+                            <button type="button" class="btn btn-outline" id="cancelAddClassBtn">إلغاء</button>
+                            <button type="submit" class="btn btn-primary" id="saveClassBtn">حفظ الفصل</button>
                         </div>
                     </form>
+                </div>
+
+                <div id="classesGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-md);">
+                    </div>
+                
+                <div id="noClassesMsg" style="text-align: center; padding: var(--space-xl); color: var(--text-muted); display: none;">
+                    لا توجد فصول دراسية مضافة حتى الآن. اضغط على "إضافة فصل جديد" للبدء.
                 </div>
             </div>
         </main>

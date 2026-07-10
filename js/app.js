@@ -9,7 +9,8 @@ import { initLogin } from './auth/login.js';
 import { initRegister } from './auth/register.js';
 import { initLogout } from './auth/logout.js';
 import { initAuthState } from './auth/state.js';
-import { initPWA } from './pwa.js'; // [جديد] استدعاء وحدة التثبيت
+import { initPWA } from './pwa.js';
+import { initClasses } from './classes.js'; // [جديد] استدعاء الفصول
 
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('App initialized');
@@ -24,11 +25,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     initRegister();
     initLogout();
     
-    // [جديد] تشغيل منطق التثبيت
+    // تشغيل منطق التثبيت
     initPWA();
+    
+    // [جديد] تشغيل وحدة الفصول
+    initClasses();
 });
 
-// [جديد] تسجيل Service Worker لتفعيل الكاش والـ PWA
+// تسجيل Service Worker لتفعيل الكاش والـ PWA
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
