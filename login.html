@@ -5,98 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تسجيل الدخول - نظام الحضور</title>
     <link rel="stylesheet" href="css/style.css?v=2">
-    <style>
-        .auth-container {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--bg-main);
-            padding: var(--space-lg);
-        }
-        .auth-card {
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .auth-divider {
-            margin: var(--space-lg) 0;
-            display: flex;
-            align-items: center;
-            color: var(--text-muted);
-        }
-        .auth-divider::before, .auth-divider::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background-color: var(--border);
-            margin: 0 var(--space-md);
-        }
-    </style>
 </head>
-<body>
+<body class="auth-page">
     <div class="auth-container">
-        <div class="card auth-card">
-        <h1 class="page-title" id="authTitle">مرحباً بك</h1>
-<p style="color: var(--text-muted); margin-bottom: var(--space-xl);" id="authSubtitle">قم بتسجيل الدخول للمتابعة</p>
+        <div class="auth-card">
+            <h1 class="page-title" id="authTitle">مرحباً بك</h1>
+            <p style="color: var(--text-muted); margin-bottom: var(--space-xl);" id="authSubtitle">قم بتسجيل الدخول للمتابعة</p>
 
-<form id="loginForm" style="text-align: right;">
-    <div class="form-group">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" id="loginEmail" class="form-control" required placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <label class="form-label">كلمة المرور</label>
-            <a href="#" id="forgotPasswordBtn" style="font-size: 0.8rem; color: var(--primary); text-decoration: none;">نسيت كلمة المرور؟</a>
-        </div>
-        <div style="position: relative;">
-            <input type="password" id="loginPassword" class="form-control" required placeholder="••••••••" style="padding-left: 40px;">
-            <button type="button" class="toggle-password" data-target="loginPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-            </button>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
-    <p style="text-align: center; margin-top: var(--space-md); font-size: 0.875rem;">
-        ليس لديك حساب؟ <a href="#" id="showRegisterBtn" style="color: var(--primary); text-decoration: none; font-weight: bold;">إنشاء حساب جديد</a>
-    </p>
-</form>
+            <form id="loginForm" style="text-align: right;">
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" class="form-control" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label class="form-label">كلمة المرور</label>
+                        <a href="#" id="forgotPasswordBtn" style="font-size: 0.8rem; color: var(--primary); text-decoration: none;">نسيت كلمة المرور؟</a>
+                    </div>
+                    <div style="position: relative;">
+                        <input type="password" id="loginPassword" class="form-control" required placeholder="••••••••" style="padding-left: 40px;">
+                        <button type="button" class="toggle-password" data-target="loginPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">تسجيل الدخول</button>
+                <p style="text-align: center; margin-top: var(--space-md); font-size: 0.875rem;">
+                    ليس لديك حساب؟ <a href="#" id="showRegisterBtn" style="color: var(--primary); text-decoration: none; font-weight: bold;">إنشاء حساب جديد</a>
+                </p>
+            </form>
 
-<form id="registerForm" style="text-align: right; display: none;">
-    <div class="form-group">
-        <label class="form-label">الاسم الكامل</label>
-        <input type="text" id="registerName" class="form-control" required placeholder="مثال: أ. أحمد محمد">
-    </div>
-    <div class="form-group">
-        <label class="form-label">البريد الإلكتروني</label>
-        <input type="email" id="registerEmail" class="form-control" required placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-        <label class="form-label">كلمة المرور</label>
-        <div style="position: relative;">
-            <input type="password" id="registerPassword" class="form-control" required minlength="6" placeholder="6 أحرف على الأقل" style="padding-left: 40px;">
-            <button type="button" class="toggle-password" data-target="registerPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-            </button>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-success" style="width: 100%; background-color: var(--success); color: white;">إنشاء الحساب</button>
-    <p style="text-align: center; margin-top: var(--space-md); font-size: 0.875rem;">
-        لديك حساب بالفعل؟ <a href="#" id="showLoginBtn" style="color: var(--primary); text-decoration: none; font-weight: bold;">تسجيل الدخول</a>
-    </p>
-<<form id="updatePasswordForm" style="text-align: right; display: none;">
-    <div class="form-group">
-        <label class="form-label">كلمة المرور الجديدة</label>
-        <div style="position: relative;">
-            <input type="password" id="newPassword" class="form-control" required minlength="6" placeholder="أدخل كلمة المرور الجديدة" style="padding-left: 40px;">
-            <button type="button" class="toggle-password" data-target="newPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-            </button>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary" style="width: 100%;">تحديث كلمة المرور</button>
-</form>
+            <form id="registerForm" style="text-align: right; display: none;">
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل</label>
+                    <input type="text" id="registerName" class="form-control" required placeholder="مثال: أ. أحمد محمد">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" class="form-control" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <div style="position: relative;">
+                        <input type="password" id="registerPassword" class="form-control" required minlength="6" placeholder="6 أحرف على الأقل" style="padding-left: 40px;">
+                        <button type="button" class="toggle-password" data-target="registerPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success" style="width: 100%; background-color: var(--success); color: white;">إنشاء الحساب</button>
+                <p style="text-align: center; margin-top: var(--space-md); font-size: 0.875rem;">
+                    لديك حساب بالفعل؟ <a href="#" id="showLoginBtn" style="color: var(--primary); text-decoration: none; font-weight: bold;">تسجيل الدخول</a>
+                </p>
+            </form>
+
+            <form id="updatePasswordForm" style="text-align: right; display: none;">
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور الجديدة</label>
+                    <div style="position: relative;">
+                        <input type="password" id="newPassword" class="form-control" required minlength="6" placeholder="أدخل كلمة المرور الجديدة" style="padding-left: 40px;">
+                        <button type="button" class="toggle-password" data-target="newPassword" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); display: flex; padding: 5px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="eye-icon"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">تحديث كلمة المرور</button>
+            </form>
+
         </div>
     </div>
     <script type="module" src="js/app.js?v=2"></script>
